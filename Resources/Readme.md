@@ -4,7 +4,7 @@ Additional resources:
 Day 1: Introduction
 	- Bitcoin whitepaper:
 	https://bitcoin.org/bitcoin.pdf
-	- Ethereum whitepaper:
+ 	- Ethereum whitepaper:
 	https://ethereum.org/en/whitepaper/
 	- For visualizing the block and it's mining: 
 	https://andersbrownworth.com/blockchain/blockchain
