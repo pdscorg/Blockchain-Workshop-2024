@@ -28,5 +28,9 @@ contract ERC20 {
         balance[msg.sender]-=amount; 
         balance[to]+=amount;   
     }
+
+    function balanceOf(address owner) public view returns (uint) {
+        return balance[owner];
+    }
  
 }
