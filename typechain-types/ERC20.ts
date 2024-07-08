@@ -22,13 +22,18 @@ import type {
 } from "./common";
 
 export interface ERC20Interface extends Interface {
-  getFunction(nameOrSignature: "transfer"): FunctionFragment;
+  getFunction(nameOrSignature: "balanceOf" | "transfer"): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "balanceOf",
+    values: [AddressLike]
+  ): string;
   encodeFunctionData(
     functionFragment: "transfer",
     values: [AddressLike, BigNumberish]
   ): string;
 
+  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "transfer", data: BytesLike): Result;
 }
 
@@ -75,6 +80,8 @@ export interface ERC20 extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
+  balanceOf: TypedContractMethod<[owner: AddressLike], [bigint], "view">;
+
   transfer: TypedContractMethod<
     [to: AddressLike, amount: BigNumberish],
     [void],
@@ -85,6 +92,9 @@ export interface ERC20 extends BaseContract {
     key: string | FunctionFragment
   ): T;
 
+  getFunction(
+    nameOrSignature: "balanceOf"
+  ): TypedContractMethod<[owner: AddressLike], [bigint], "view">;
   getFunction(
     nameOrSignature: "transfer"
   ): TypedContractMethod<
